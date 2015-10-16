@@ -71,8 +71,10 @@ module.exports = function (selector, cases){
 
     if (index > -1) {
       streams[index].write(chunk);
+      
       return next();
     }
+
     this.push(chunk);
     next();
   }, function (next){
