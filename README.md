@@ -9,7 +9,7 @@ stream-switch
 [david-url]: https://david-dm.org/nuintun/gulp-cmd
 
 ###Usage
-![](https://raw.githubusercontent.com/nuintun/stream-switch/master/img/switch.png)
+![switch.png](https://raw.githubusercontent.com/nuintun/stream-switch/master/images/switch.png)
 
 ```
 var switchStream = require('stream-switch');
