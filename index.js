@@ -4,6 +4,7 @@
 
 'use strict';
 
+var is = require('is');
 var pedding = require('pedding');
 var Stream = require('stream').Stream;
 var through = require('./lib/through');
@@ -16,7 +17,7 @@ var duplexer = require('./lib/duplexer');
  * @returns {*}
  */
 function callSwitch(selector, chunk){
-  if (typeof selector === 'function') {
+  if (is.fn(selector)) {
     return selector(chunk);
   }
 
