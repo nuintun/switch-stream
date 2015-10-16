@@ -64,22 +64,22 @@ module.exports = function (selector, cases){
    * `---(caseA)----> streamA --->-、
    * `---(caseB)----> streamB ------> output
    */
-  var input = through(function (chunk, enc, callback){
+  var input = through(function (chunk, enc, next){
     var flag = callSwitch(selector, chunk);
     var index = flags.indexOf(flag);
 
     if (index > -1) {
       streams[index].write(chunk);
-      return callback();
+      return next();
     }
     this.push(chunk);
-    callback();
-  }, function (callback){
+    next();
+  }, function (next){
     streams.forEach(function (stream){
       stream.end();
     });
     end();
-    callback();
+    next();
   });
 
   input.pipe(output, { end: false });
