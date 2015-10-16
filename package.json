@@ -1,18 +1,18 @@
 {
-  "name": "stream-switch",
+  "name": "switch-stream",
   "version": "0.0.1",
   "description": "A stream condition for switch/case",
   "author": {
     "name": "nuintun",
     "email": "nuintun@qq.com"
   },
-  "homepage": "https://nuintun.github.io/stream-switch",
+  "homepage": "https://nuintun.github.io/switch-stream",
   "repository": {
     "type": "git",
-    "url": "git://github.com/nuintun/stream-switch.git"
+    "url": "git://github.com/nuintun/switch-stream.git"
   },
   "bugs": {
-    "url": "https://github.com/nuintun/stream-switch/issues",
+    "url": "https://github.com/nuintun/switch-stream/issues",
     "email": "nuintun@qq.com"
   },
   "license": "MIT",

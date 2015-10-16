@@ -1,18 +1,18 @@
-stream-switch
+switch-stream
 =========
 
 >A stream condition for switch/case
 
 >[![Dependencies][david-image]][david-url]
 
-[david-image]: http://img.shields.io/david/nuintun/gulp-cmd.svg?style=flat-square
-[david-url]: https://david-dm.org/nuintun/gulp-cmd
+[david-image]: http://img.shields.io/david/nuintun/switch-stream.svg?style=flat-square
+[david-url]: https://david-dm.org/nuintun/switch-stream
 
 ###Usage
-![switch.png](https://raw.githubusercontent.com/nuintun/stream-switch/master/images/switch.png)
+![switch.png](https://raw.githubusercontent.com/nuintun/switch-stream/master/images/switch.png)
 
 ```js
-var switchStream = require('stream-switch');
+var switchStream = require('switch-stream');
 
 process.in
 .pipe(switchStream(function(buf) {
@@ -43,4 +43,4 @@ If buf great than 0, then pipe to streamA. If buf less than 0, then pipe to stre
   Choose which stream will be piped to by key switch return.
 
 ###Reference
-Modify from popomore's [stream-switch](https://github.com/popomore/stream-switch), but use stream3.
+Modify from popomore's [switch-stream](https://github.com/popomore/switch-stream), but use stream3.
