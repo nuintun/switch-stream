@@ -60,8 +60,8 @@ module.exports = function (selector, cases){
   });
 
   /**
-   * input ---(unmatch)-------->--¡¢
-   * `---(caseA)----> streamA --->-¡¢
+   * input ---(unmatch)-------->--ã€
+   * `---(caseA)----> streamA --->-ã€
    * `---(caseB)----> streamB ------> output
    */
   var input = through(function (chunk, enc, done){
