@@ -11,12 +11,12 @@ var through = require('./lib/through');
 var duplexer = require('./lib/duplexer');
 
 /**
- * call switch
+ * turn switch
  * @param selector
  * @param chunk
  * @returns {*}
  */
-function callSwitch(selector, chunk){
+function turnSwitch(selector, chunk){
   if (is.fn(selector)) {
     return selector(chunk);
   }
@@ -65,13 +65,13 @@ module.exports = function (selector, cases){
    * `---(caseA)----> streamA --->-、
    * `---(caseB)----> streamB ------> output
    */
-  var input = through(function (chunk, enc, next){
-    var flag = callSwitch(selector, chunk);
+  var input = through(function (chunk, encoding, next){
+    var flag = turnSwitch(selector, chunk);
     var index = flags.indexOf(flag);
 
     if (index > -1) {
       streams[index].write(chunk);
-      
+
       return next();
     }
 

@@ -9,48 +9,26 @@ stream-switch
 [david-url]: https://david-dm.org/nuintun/gulp-cmd
 
 ###Usage
-```js
-var path = require('path');
-var join = path.join;
-var relative = path.relative;
-var gulp = require('gulp');
-var cmd = require('gulp-cmd');
-var alias = {
-  'import-style': 'util/import-style/1.0.0/import-style'
-};
+![](https://raw.githubusercontent.com/nuintun/stream-switch/master/img/switch.png)
 
-// Fixed css resource path
-function onpath(path, property, file, wwwroot){
-  if (/^[^./\\]/.test(path)) {
-    path = './' + path;
-  }
-
-  if (path.indexOf('.') === 0) {
-    path = join(dirname(file), path);
-    path = relative(wwwroot, path);
-    path = '/' + path;
-    path = path.replace(/\\+/g, '/');
-  }
-
-  path = path.replace('assets/', 'online/');
-
-  return path;
-}
-
-// Task
-gulp.task('default', function (){
-  gulp.src('assets/js/**/*.js', { base: 'assets/js' })
-    .pipe(cmd({
-      alias: alias,
-      ignore: ['jquery'],
-      include: function (id){
-        return id.indexOf('view') === 0 ? 'all' : 'self';
-      },
-      css: { onpath: onpath }
-    }))
-    .pipe(gulp.dest('online/js'));
-});
 ```
+var switchStream = require('stream-switch');
+
+process.in
+.pipe(switchStream(function(buf) {
+  if (buf > 0) {
+    return 'case1';
+  } else if (buf < 0) {
+    return 'case2'
+  }
+}, {
+  'case1': streamA,
+  'case2': streamB
+}))
+.pipe(process.stdout)
+```
+
+If buf great than 0, then pipe to streamA. If buf less than 0, then pipe to streamB. Otherwise buf equal to 0, pipe to output directly.
 
 ###API
 ####cmd(options)
