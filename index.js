@@ -34,15 +34,15 @@ module.exports = function (selector, cases){
   var streams = [];
   var output = through();
 
-  for (var key in cases) {
-    if (cases.hasOwnProperty(key)) {
-      var stream = cases[key];
+  for (var flag in cases) {
+    if (cases.hasOwnProperty(flag)) {
+      var stream = cases[flag];
 
       if (!(stream instanceof Stream))
-        throw new Error(key + ' is not a stream');
+        throw new Error(flag + ' is not a stream');
 
       streams.push(stream);
-      flags.push(key);
+      flags.push(flag);
     }
   }
 
