@@ -26,7 +26,8 @@
     "gulpplugin"
   ],
   "dependencies": {
-    "pedding": "^1.0.0"
+    "pedding": "^1.0.0",
+    "readable-stream": "^2.0.2"
   },
   "devDependencies": {
   },
