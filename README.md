@@ -41,3 +41,6 @@ If buf great than 0, then pipe to streamA. If buf less than 0, then pipe to stre
 - cases
   
   Choose which stream will be piped to by key switch return.
+
+###Reference
+Modify from popomore's [stream-switch](https://github.com/popomore/stream-switch)
