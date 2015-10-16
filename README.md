@@ -31,7 +31,7 @@ process.in
 If buf great than 0, then pipe to streamA. If buf less than 0, then pipe to streamB. Otherwise buf equal to 0, pipe to output directly.
 
 ###API
-####switchStream(switch, cases)
+####switchStream(switch, cases, options)
 
 - switch
   
@@ -41,6 +41,10 @@ If buf great than 0, then pipe to streamA. If buf less than 0, then pipe to stre
 - cases
   
   Choose which stream will be piped to by key switch return.
+  
+- options
+    
+  The stream options settings.
 
 ###Reference
 Modify from popomore's [switch-stream](https://github.com/popomore/stream-switch), but use stream3.

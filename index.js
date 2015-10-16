@@ -28,12 +28,14 @@ function turnSwitch(selector, chunk){
  * stream switch
  * @param selector
  * @param cases
+ * @param options
  * @returns {Duplexer|*}
  */
-module.exports = function (selector, cases){
+module.exports = function (selector, cases, options){
   var flags = [];
   var streams = [];
-  var output = through();
+  options = options || { objectMode: true };
+  var output = through(options);
 
   for (var flag in cases) {
     if (cases.hasOwnProperty(flag)) {
@@ -87,7 +89,7 @@ module.exports = function (selector, cases){
 
   input.pipe(output, { end: false });
 
-  return duplexer(input, output);
+  return duplexer(options, input, output);
 };
 module.exports.through = through;
 module.exports.duplexer = duplexer;
