@@ -71,14 +71,16 @@ module.exports = function (selector, cases, options){
     var flag = turnSwitch(selector, chunk);
     var index = flags.indexOf(flag);
 
-    if (index > -1) {
-      streams[index].write(chunk);
-
-      return next();
+    if (index !== -1) {
+      if (streams[index].write(chunk)) {
+        next();
+      } else {
+        streams[index].once('drain', next);
+      }
+    } else {
+      this.push(chunk);
+      next();
     }
-
-    this.push(chunk);
-    next();
   }, function (next){
     streams.forEach(function (stream){
       stream.end();
