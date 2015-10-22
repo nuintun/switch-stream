@@ -78,7 +78,7 @@ module.exports = function (selector, cases, options){
         streams[index].once('drain', next);
       }
     } else {
-      this.push(chunk);
+      output.push(chunk);
       next();
     }
   }, function (next){
