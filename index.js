@@ -58,7 +58,7 @@ module.exports = function (selector, cases, options){
     stream.on('error', function (error){
       output.emit('error', error);
     });
-    stream.on('end', end);
+    stream.once('end', end);
     stream.pipe(output, { end: false });
   });
 
