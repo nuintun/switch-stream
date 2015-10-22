@@ -25,6 +25,20 @@ function turnSwitch(selector, chunk){
 }
 
 /**
+ * do write
+ * @param stream
+ * @param chunk
+ * @param next
+ */
+function doWrite(stream, chunk, next){
+  if (stream.write(chunk)) {
+    next();
+  } else {
+    stream.once('drain', next);
+  }
+}
+
+/**
  * stream switch
  * @param selector
  * @param cases
@@ -32,9 +46,10 @@ function turnSwitch(selector, chunk){
  * @returns {Duplexer|*}
  */
 module.exports = function (selector, cases, options){
+  options = options || { objectMode: true };
+
   var flags = [];
   var streams = [];
-  options = options || { objectMode: true };
   var output = through(options);
 
   for (var flag in cases) {
@@ -54,6 +69,7 @@ module.exports = function (selector, cases, options){
     output.end();
   });
 
+  // bind events
   streams.forEach(function (stream){
     stream.on('error', function (error){
       output.emit('error', error);
@@ -72,14 +88,9 @@ module.exports = function (selector, cases, options){
     var index = flags.indexOf(flag);
 
     if (index !== -1) {
-      if (streams[index].write(chunk)) {
-        next();
-      } else {
-        streams[index].once('drain', next);
-      }
+      doWrite(streams[index], chunk, next);
     } else {
-      output.push(chunk);
-      next();
+      doWrite(output, chunk, next);
     }
   }, function (next){
     streams.forEach(function (stream){
