@@ -50,7 +50,7 @@ module.exports = function (selector, cases, options){
   }
 
   // stream end when all read ends
-  var end = pedding(streams.length + 1, function (){
+  var end = pedding(streams.length, function (){
     output.end();
   });
 
@@ -83,7 +83,6 @@ module.exports = function (selector, cases, options){
     streams.forEach(function (stream){
       stream.end();
     });
-    end();
     next();
   });
 
