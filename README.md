@@ -47,4 +47,4 @@ If buf great than 0, then pipe to streamA. If buf less than 0, then pipe to stre
   The stream options settings.
 
 ###Reference
-Modify from popomore's [switch-stream](https://github.com/popomore/stream-switch), but use stream3.
+Modify from popomore's [stream-switch](https://github.com/popomore/stream-switch), but use stream3.
