@@ -6,9 +6,9 @@
 
 var is = require('is');
 var pedding = require('pedding');
+var through = require('through');
+var duplexer = require('duplexer');
 var Stream = require('stream').Stream;
-var through = require('./lib/through');
-var duplexer = require('./lib/duplexer');
 
 /**
  * turn switch
