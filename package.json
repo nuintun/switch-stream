@@ -29,7 +29,5 @@
     "through": "https://github.com/nuintun/through/archive/master.tar.gz",
     "duplexer": "https://github.com/nuintun/duplexer/archive/master.tar.gz"
   },
-  "devDependencies": {
-  },
   "readmeFilename": "README.md"
 }
