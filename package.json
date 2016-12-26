@@ -1,5 +1,5 @@
 {
-  "name": "switch-stream",
+  "name": "@nuintun/switch-stream",
   "version": "0.0.1",
   "description": "A stream condition for switch/case",
   "author": {
@@ -26,8 +26,8 @@
   "dependencies": {
     "is": "^3.2.0",
     "pedding": "^1.1.0",
-    "through": "https://github.com/nuintun/through/archive/master.tar.gz",
-    "duplexer": "https://github.com/nuintun/duplexer/archive/master.tar.gz"
+    "@nuintun/through": "https://github.com/nuintun/through/archive/master.tar.gz",
+    "@nuintun/duplexer": "https://github.com/nuintun/duplexer/archive/master.tar.gz"
   },
   "readmeFilename": "README.md"
 }
