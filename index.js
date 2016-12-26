@@ -6,9 +6,9 @@
 
 var is = require('is');
 var pedding = require('pedding');
+var Stream = require('stream').Stream;
 var through = require('@nuintun/through');
 var duplexer = require('@nuintun/duplexer');
-var Stream = require('stream').Stream;
 
 /**
  * turn switch
