@@ -6,8 +6,8 @@
 
 var is = require('is');
 var pedding = require('pedding');
-var through = require('through');
-var duplexer = require('duplexer');
+var through = require('@nuintun/through');
+var duplexer = require('@nuintun/duplexer');
 var Stream = require('stream').Stream;
 
 /**
