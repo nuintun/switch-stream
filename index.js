@@ -16,7 +16,7 @@ var duplexer = require('@nuintun/duplexer');
  * @param chunk
  * @returns {*}
  */
-function turnSwitch(selector, chunk){
+function turnSwitch(selector, chunk) {
   if (is.fn(selector)) {
     return selector(chunk);
   }
@@ -30,7 +30,7 @@ function turnSwitch(selector, chunk){
  * @param chunk
  * @param next
  */
-function doWrite(stream, chunk, next){
+function doWrite(stream, chunk, next) {
   if (stream.write(chunk)) {
     next();
   } else {
@@ -45,7 +45,7 @@ function doWrite(stream, chunk, next){
  * @param options
  * @returns {Duplexer|*}
  */
-module.exports = function (selector, cases, options){
+module.exports = function(selector, cases, options) {
   options = options || { objectMode: true };
 
   var flags = [];
@@ -65,13 +65,13 @@ module.exports = function (selector, cases, options){
   }
 
   // stream end when all read ends
-  var end = pedding(streams.length, function (){
+  var end = pedding(streams.length, function() {
     output.end();
   });
 
   // bind events
-  streams.forEach(function (stream){
-    stream.on('error', function (error){
+  streams.forEach(function(stream) {
+    stream.on('error', function(error) {
       output.emit('error', error);
     });
     stream.once('end', end);
@@ -83,7 +83,7 @@ module.exports = function (selector, cases, options){
    * `---(caseA)----> streamA --->-、
    * `---(caseB)----> streamB ------> output
    */
-  var input = through(function (chunk, encoding, next){
+  var input = through(function(chunk, encoding, next) {
     var flag = turnSwitch(selector, chunk);
     var index = flags.indexOf(flag);
 
@@ -92,8 +92,8 @@ module.exports = function (selector, cases, options){
     } else {
       doWrite(output, chunk, next);
     }
-  }, function (next){
-    streams.forEach(function (stream){
+  }, function(next) {
+    streams.forEach(function(stream) {
       stream.end();
     });
     next();
