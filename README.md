@@ -8,7 +8,7 @@ switch-stream
 [david-image]: http://img.shields.io/david/nuintun/switch-stream.svg?style=flat-square
 [david-url]: https://david-dm.org/nuintun/switch-stream
 
-###Usage
+### Usage
 ![switch.png](https://raw.githubusercontent.com/nuintun/switch-stream/master/images/switch.png)
 
 ```js
@@ -30,8 +30,8 @@ process.in
 
 If buf great than 0, then pipe to streamA. If buf less than 0, then pipe to streamB. Otherwise buf equal to 0, pipe to output directly.
 
-###API
-####switchStream(switch, cases, options)
+### API
+#### switchStream(switch, cases, options)
 
 - switch
   
@@ -46,5 +46,5 @@ If buf great than 0, then pipe to streamA. If buf less than 0, then pipe to stre
     
   The stream options settings.
 
-###Reference
+### Reference
 Modify from popomore's [stream-switch](https://github.com/popomore/stream-switch), but use stream3.
