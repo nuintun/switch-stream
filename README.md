@@ -2,7 +2,7 @@ switch-stream
 =========
 
 >A stream condition for switch/case
-
+>
 >[![Dependencies][david-image]][david-url]
 
 [david-image]: http://img.shields.io/david/nuintun/switch-stream.svg?style=flat-square
