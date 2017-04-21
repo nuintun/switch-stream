@@ -1,5 +1,4 @@
-switch-stream
-=========
+# switch-stream
 
 >A stream condition for switch/case
 >
