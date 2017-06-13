@@ -4,20 +4,23 @@
 
 'use strict';
 
-var is = require('is');
-var pedding = require('pedding');
+var holding = require('holding');
 var Stream = require('stream').Stream;
 var through = require('@nuintun/through');
 var duplexer = require('@nuintun/duplexer');
 
+// to string
+var toString = Object.prototype.toString;
+
 /**
  * turn switch
+ *
  * @param selector
  * @param chunk
- * @returns {*}
+ * @returns {String}
  */
 function turnSwitch(selector, chunk) {
-  if (is.fn(selector)) {
+  if (toString.call(selector) === '[object Function]') {
     return selector(chunk);
   }
 
@@ -26,6 +29,7 @@ function turnSwitch(selector, chunk) {
 
 /**
  * do write
+ *
  * @param stream
  * @param chunk
  * @param next
@@ -40,10 +44,11 @@ function doWrite(stream, chunk, next) {
 
 /**
  * stream switch
+ *
  * @param selector
  * @param cases
  * @param options
- * @returns {Duplexer|*}
+ * @returns {Duplexer}
  */
 module.exports = function(selector, cases, options) {
   options = options || { objectMode: true };
@@ -56,8 +61,9 @@ module.exports = function(selector, cases, options) {
     if (cases.hasOwnProperty(flag)) {
       var stream = cases[flag];
 
-      if (!(stream instanceof Stream))
+      if (!(stream instanceof Stream)) {
         throw new TypeError(flag + ' is not a stream');
+      }
 
       streams.push(stream);
       flags.push(flag);
@@ -65,7 +71,7 @@ module.exports = function(selector, cases, options) {
   }
 
   // stream end when all read ends
-  var end = pedding(streams.length, function() {
+  var end = holding(streams.length - 1, function() {
     output.end();
   });
 
