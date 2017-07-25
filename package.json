@@ -24,7 +24,7 @@
     "condition"
   ],
   "dependencies": {
-    "holding": "^1.0.3",
+    "holding": "^1.0.4",
     "@nuintun/through": "https://github.com/nuintun/through/archive/master.tar.gz",
     "@nuintun/duplexer": "https://github.com/nuintun/duplexer/archive/master.tar.gz"
   },
