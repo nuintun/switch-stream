@@ -1,23 +1,24 @@
 /**
- * Created by nuintun on 2015/10/16.
+ * @module index
+ * @license MIT
+ * @version 2017/11/13
  */
 
 'use strict';
 
-var holding = require('holding');
-var Stream = require('stream').Stream;
-var through = require('@nuintun/through');
-var duplexer = require('@nuintun/duplexer');
+const holding = require('holding');
+const Stream = require('stream').Stream;
+const through = require('@nuintun/through');
+const duplexer = require('@nuintun/duplexer');
 
-// to string
-var toString = Object.prototype.toString;
+// Object toString
+const toString = Object.prototype.toString;
 
 /**
- * turn switch
- *
- * @param selector
- * @param chunk
- * @returns {String}
+ * @function turnSwitch
+ * @param {Function|string} selector
+ * @param {any} chunk
+ * @returns {string}
  */
 function turnSwitch(selector, chunk) {
   if (toString.call(selector) === '[object Function]') {
@@ -28,11 +29,10 @@ function turnSwitch(selector, chunk) {
 }
 
 /**
- * do write
- *
- * @param stream
- * @param chunk
- * @param next
+ * @function doWrite
+ * @param {Stream} stream
+ * @param {any} chunk
+ * @param {Function} next
  */
 function doWrite(stream, chunk, next) {
   if (stream.write(chunk)) {
@@ -43,23 +43,22 @@ function doWrite(stream, chunk, next) {
 }
 
 /**
- * stream switch
- *
- * @param selector
- * @param cases
- * @param options
+ * @function streamSwitch
+ * @param {Function|string} selector
+ * @param {Object} cases
+ * @param {Object} options
  * @returns {Duplexer}
  */
 module.exports = function(selector, cases, options) {
   options = options || { objectMode: true };
 
-  var flags = [];
-  var streams = [];
-  var output = through(options);
+  const flags = [];
+  const streams = [];
+  const output = through(options);
 
-  for (var flag in cases) {
+  for (let flag in cases) {
     if (cases.hasOwnProperty(flag)) {
-      var stream = cases[flag];
+      let stream = cases[flag];
 
       if (!(stream instanceof Stream)) {
         throw new TypeError(flag + ' is not a stream');
@@ -70,14 +69,14 @@ module.exports = function(selector, cases, options) {
     }
   }
 
-  // stream end when all read ends
-  var end = holding(streams.length - 1, function() {
+  // Stream end when all read ends
+  const end = holding(streams.length - 1, () => {
     output.end();
   });
 
-  // bind events
-  streams.forEach(function(stream) {
-    stream.on('error', function(error) {
+  // Bind events
+  streams.forEach((stream) => {
+    stream.on('error', (error) => {
       output.emit('error', error);
     });
     stream.once('end', end);
@@ -89,17 +88,17 @@ module.exports = function(selector, cases, options) {
    * `---(caseA)----> streamA --->-、
    * `---(caseB)----> streamB ------> output
    */
-  var input = through(function(chunk, encoding, next) {
-    var flag = turnSwitch(selector, chunk);
-    var index = flags.indexOf(flag);
+  const input = through((chunk, encoding, next) => {
+    const flag = turnSwitch(selector, chunk);
+    const index = flags.indexOf(flag);
 
     if (index !== -1) {
       doWrite(streams[index], chunk, next);
     } else {
       doWrite(output, chunk, next);
     }
-  }, function(next) {
-    streams.forEach(function(stream) {
+  }, (next) => {
+    streams.forEach((stream) => {
       stream.end();
     });
     next();
