@@ -20,12 +20,7 @@
   },
   "license": "MIT",
   "main": "index",
-  "keywords": [
-    "stream",
-    "switch",
-    "case",
-    "condition"
-  ],
+  "keywords": ["stream", "switch", "case", "condition"],
   "dependencies": {
     "holding": "^1.0.6",
     "@nuintun/through": "https://github.com/nuintun/through/archive/master.tar.gz",

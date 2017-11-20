@@ -75,8 +75,8 @@ module.exports = function(selector, cases, options) {
   });
 
   // Bind events
-  streams.forEach((stream) => {
-    stream.on('error', (error) => {
+  streams.forEach(stream => {
+    stream.on('error', error => {
       output.emit('error', error);
     });
     stream.once('end', end);
@@ -88,21 +88,24 @@ module.exports = function(selector, cases, options) {
    * `---(caseA)----> streamA --->-、
    * `---(caseB)----> streamB ------> output
    */
-  const input = through((chunk, encoding, next) => {
-    const flag = turnSwitch(selector, chunk);
-    const index = flags.indexOf(flag);
+  const input = through(
+    (chunk, encoding, next) => {
+      const flag = turnSwitch(selector, chunk);
+      const index = flags.indexOf(flag);
 
-    if (index !== -1) {
-      doWrite(streams[index], chunk, next);
-    } else {
-      doWrite(output, chunk, next);
+      if (index !== -1) {
+        doWrite(streams[index], chunk, next);
+      } else {
+        doWrite(output, chunk, next);
+      }
+    },
+    next => {
+      streams.forEach(stream => {
+        stream.end();
+      });
+      next();
     }
-  }, (next) => {
-    streams.forEach((stream) => {
-      stream.end();
-    });
-    next();
-  });
+  );
 
   input.pipe(output, { end: false });
 
