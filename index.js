@@ -61,7 +61,7 @@ module.exports = function(selector, cases, options) {
       let stream = cases[flag];
 
       if (!(stream instanceof Stream)) {
-        throw new TypeError(flag + ' is not a stream');
+        throw new TypeError(`${flag} is not a stream`);
       }
 
       streams.push(stream);
