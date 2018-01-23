@@ -23,8 +23,8 @@
   "keywords": ["stream", "switch", "case", "condition"],
   "dependencies": {
     "holding": "^2.0.1",
-    "@nuintun/through": "https://github.com/nuintun/through/archive/master.tar.gz",
-    "@nuintun/duplexer": "https://github.com/nuintun/duplexer/archive/master.tar.gz"
+    "@nuintun/through": "^0.0.1",
+    "@nuintun/duplexer": "^0.0.1"
   },
   "readmeFilename": "README.md"
 }
