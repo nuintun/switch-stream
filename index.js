@@ -11,9 +11,6 @@ const Stream = require('stream').Stream;
 const through = require('@nuintun/through');
 const duplexer = require('@nuintun/duplexer');
 
-// Object toString
-const toString = Object.prototype.toString;
-
 /**
  * @function turnSwitch
  * @param {Function|string} selector
@@ -21,7 +18,7 @@ const toString = Object.prototype.toString;
  * @returns {string}
  */
 function turnSwitch(selector, chunk) {
-  if (toString.call(selector) === '[object Function]') {
+  if (typeof selector === 'function') {
     return selector(chunk);
   }
 
