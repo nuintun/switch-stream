@@ -40,13 +40,13 @@ function doWrite(stream, chunk, next) {
 }
 
 /**
- * @function streamSwitch
+ * @function switchStream
  * @param {Function|string} selector
  * @param {Object} cases
  * @param {Object} options
  * @returns {Duplexer}
  */
-module.exports = function(selector, cases, options) {
+function switchStream(selector, cases, options) {
   options = options || { objectMode: true };
 
   const flags = [];
@@ -107,6 +107,9 @@ module.exports = function(selector, cases, options) {
   input.pipe(output, { end: false });
 
   return duplexer(options, input, output);
-};
-module.exports.through = through;
-module.exports.duplexer = duplexer;
+}
+
+switchStream.through = through;
+switchStream.duplexer = duplexer;
+
+module.exports = switchStream;
