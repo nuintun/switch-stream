@@ -2,10 +2,9 @@
 
 > A stream condition for switch/case
 >
+> [![NPM Version][npm-image]][npm-url]
+> [![Download Status][download-image]][npm-url]
 > [![Dependencies][david-image]][david-url]
-
-[david-image]: http://img.shields.io/david/nuintun/switch-stream.svg?style=flat-square
-[david-url]: https://david-dm.org/nuintun/switch-stream
 
 ### Usage
 
@@ -54,3 +53,9 @@ If buf great than 0, then pipe to streamA. If buf less than 0, then pipe to stre
 ### Reference
 
 Modify from popomore's [stream-switch](https://github.com/popomore/stream-switch), but use stream3.
+
+[npm-image]: https://img.shields.io/npm/v/@nuintun/switch-stream.svg?style=flat-square
+[npm-url]: https://www.npmjs.org/package/@nuintun/switch-stream
+[download-image]: https://img.shields.io/npm/dm/@nuintun/switch-stream.svg?style=flat-square
+[david-image]: http://img.shields.io/david/nuintun/switch-stream.svg?style=flat-square
+[david-url]: https://david-dm.org/nuintun/switch-stream
