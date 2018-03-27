@@ -11,12 +11,12 @@
 ![switch.png](https://raw.githubusercontent.com/nuintun/switch-stream/master/images/switch.png)
 
 ```js
-var switchStream = require('switch-stream');
+const switchStream = require('switch-stream');
 
 process.in
   .pipe(
     switchStream(
-      function(buf) {
+      buf => {
         if (buf > 0) {
           return 'case1';
         } else if (buf < 0) {
