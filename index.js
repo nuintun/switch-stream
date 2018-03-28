@@ -7,7 +7,7 @@
 'use strict';
 
 const holding = require('holding');
-const Stream = require('stream').Stream;
+const { Stream } = require('stream');
 const through = require('@nuintun/through');
 const duplexer = require('@nuintun/duplexer');
 
@@ -47,7 +47,9 @@ function doWrite(stream, chunk, next) {
  * @returns {Duplexer}
  */
 function switchStream(selector, cases, options) {
-  options = options || { objectMode: true };
+  options = options || {};
+
+  options.objectMode = options.objectMode !== false;
 
   const flags = [];
   const streams = [];
@@ -58,7 +60,7 @@ function switchStream(selector, cases, options) {
       let stream = cases[flag];
 
       if (!(stream instanceof Stream)) {
-        throw new TypeError(`${flag} is not a stream`);
+        throw new TypeError(`Case ${flag} is not a stream.`);
       }
 
       streams.push(stream);
@@ -67,15 +69,11 @@ function switchStream(selector, cases, options) {
   }
 
   // Stream end when all read ends
-  const end = holding(streams.length - 1, () => {
-    output.end();
-  });
+  const end = holding(streams.length - 1, () => output.end());
 
   // Bind events
   streams.forEach(stream => {
-    stream.on('error', error => {
-      output.emit('error', error);
-    });
+    stream.on('error', error => output.emit('error', error));
     stream.once('end', end);
     stream.pipe(output, { end: false });
   });
@@ -97,9 +95,9 @@ function switchStream(selector, cases, options) {
       }
     },
     next => {
-      streams.forEach(stream => {
-        stream.end();
-      });
+      streams.forEach(stream => stream.end());
+
+      // Next
       next();
     }
   );

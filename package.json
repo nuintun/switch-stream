@@ -1,6 +1,6 @@
 {
   "name": "@nuintun/switch-stream",
-  "version": "0.3.0",
+  "version": "1.0.0",
   "description": "A stream condition for switch/case",
   "author": {
     "name": "nuintun",
@@ -22,9 +22,9 @@
   "main": "index",
   "keywords": ["stream", "switch", "case", "condition"],
   "dependencies": {
-    "holding": "^2.0.1",
-    "@nuintun/through": "^0.3.0",
-    "@nuintun/duplexer": "^0.3.0"
+    "holding": "^3.0.0",
+    "@nuintun/through": "^1.0.0",
+    "@nuintun/duplexer": "^1.0.0"
   },
   "readmeFilename": "README.md"
 }
