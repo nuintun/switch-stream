@@ -1,19 +1,17 @@
 {
   "name": "@nuintun/switch-stream",
-  "version": "1.0.1",
-  "description": "A stream condition for switch/case",
+  "version": "1.0.3",
+  "description": "A stream condition for switch/case.",
   "author": {
     "name": "nuintun",
     "email": "nuintun@qq.com"
   },
-  "homepage": "https://nuintun.github.io/switch-stream",
   "repository": {
     "type": "git",
-    "url": "git://github.com/nuintun/switch-stream.git"
+    "url": "git+https://github.com/nuintun/switch-stream.git"
   },
   "bugs": {
-    "url": "https://github.com/nuintun/switch-stream/issues",
-    "email": "nuintun@qq.com"
+    "url": "https://github.com/nuintun/switch-stream/issues"
   },
   "engines": {
     "node": ">=4.0.0"
@@ -22,9 +20,9 @@
   "main": "index.js",
   "keywords": ["stream", "switch", "case", "condition"],
   "dependencies": {
-    "holding": "^3.0.1",
-    "@nuintun/through": "^1.0.1",
-    "@nuintun/duplexer": "^1.0.1"
+    "holding": "^3.0.2",
+    "@nuintun/through": "^1.0.3",
+    "@nuintun/duplexer": "^1.0.3"
   },
-  "readmeFilename": "README.md"
+  "homepage": "https://github.com/nuintun/switch-stream#readme"
 }
