@@ -1,6 +1,6 @@
 {
   "name": "@nuintun/switch-stream",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "A stream condition for switch/case",
   "author": {
     "name": "nuintun",
@@ -19,12 +19,12 @@
     "node": ">=4.0.0"
   },
   "license": "MIT",
-  "main": "index",
+  "main": "index.js",
   "keywords": ["stream", "switch", "case", "condition"],
   "dependencies": {
-    "holding": "^3.0.0",
-    "@nuintun/through": "^1.0.0",
-    "@nuintun/duplexer": "^1.0.0"
+    "holding": "^3.0.1",
+    "@nuintun/through": "^1.0.1",
+    "@nuintun/duplexer": "^1.0.1"
   },
   "readmeFilename": "README.md"
 }
