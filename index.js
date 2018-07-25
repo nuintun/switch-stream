@@ -75,7 +75,10 @@ function switchStream(selector, cases, options) {
   streams.forEach(stream => {
     stream.on('error', error => output.emit('error', error));
     stream.once('end', end);
-    stream.pipe(output, { end: false });
+    stream.pipe(
+      output,
+      { end: false }
+    );
   });
 
   /**
@@ -102,7 +105,10 @@ function switchStream(selector, cases, options) {
     }
   );
 
-  input.pipe(output, { end: false });
+  input.pipe(
+    output,
+    { end: false }
+  );
 
   return duplexer(options, input, output);
 }
